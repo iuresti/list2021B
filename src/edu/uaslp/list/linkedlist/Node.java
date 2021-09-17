@@ -2,7 +2,7 @@ package edu.uaslp.list.linkedlist;
 
 public class Node {
     // package-private
-    int dato;
+    int data;
     Node next;
     Node previous;
 }

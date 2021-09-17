@@ -8,7 +8,7 @@ public class LinkedList {
     public void add(int dato){
         Node node = new Node();
 
-        node.dato = dato;
+        node.data = dato;
 
         if(head == null) {
             head = node;
@@ -37,6 +37,6 @@ public class LinkedList {
             it = it.next;
         }
 
-        return it == null ? 0 : it.dato;
+        return it == null ? 0 : it.data;
     }
 }
