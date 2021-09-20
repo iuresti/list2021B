@@ -17,11 +17,21 @@ public class Main {
         alumnos.add(22);
 
 
+        libros.insert(100, 0);
+        libros.insert(200, 4);
+        libros.insert(300, 2);
+
+
+        libros.delete(2);
+
+
         System.out.println("Libros size:" + libros.getSize());
         System.out.println("Alumnos size:" + alumnos.getSize());
 
 
-        System.out.println("Libros en posición 3 :" + libros.get(3));
+        System.out.println("Libros en posición 3 :" + libros.getAt(3));
+
+        libros.print();
 
     }
 }
