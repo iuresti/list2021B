@@ -1,8 +1,8 @@
 package edu.uaslp.list.linkedlist;
 
-class Node {
+class Node <T> {
     // package-private
-    int data;
+    T data;
     Node next;
     Node previous;
 }
