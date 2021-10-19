@@ -1,11 +1,64 @@
 package edu.uaslp.list.linkedlist;
 
+import edu.uaslp.list.Iterator;
 import edu.uaslp.list.List;
 
 public class LinkedList <H> implements List<H> {
     private Node<H> head;
     private Node<H> tail;
     private int size;
+
+    private class ForwardIterator implements Iterator<H> {
+        private Node<H> currentNode;
+
+        ForwardIterator(){
+            currentNode = head;
+        }
+
+        @Override
+        public H next() {
+            H data = currentNode.data;
+
+            currentNode = currentNode.next;
+
+            return data;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+    }
+
+    private class ReverseIterator implements Iterator<H> {
+        private Node<H> currentNode;
+
+        ReverseIterator(){
+            currentNode = tail;
+        }
+
+        @Override
+        public H next() {
+            H data = currentNode.data;
+
+            currentNode = currentNode.previous;
+
+            return data;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+    }
+
+    public Iterator<H> getIterator(){
+        return new ForwardIterator();
+    }
+
+    public Iterator<H> getReverseIterator(){
+        return new ReverseIterator();
+    }
 
     public void add(H dato) {
         Node<H> node = new Node<>();
@@ -101,14 +154,5 @@ public class LinkedList <H> implements List<H> {
         }
         iterator.previous = node;
         size++;
-    }
-
-    public void print(){
-        Node<H> iterator = head;
-
-        while(iterator != null){
-            System.out.println(iterator.data);
-            iterator = iterator.next;
-        }
     }
 }

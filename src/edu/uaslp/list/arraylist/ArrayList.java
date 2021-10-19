@@ -1,5 +1,6 @@
 package edu.uaslp.list.arraylist;
 
+import edu.uaslp.list.Iterator;
 import edu.uaslp.list.List;
 
 public class ArrayList<T> implements List<T> {
@@ -8,6 +9,44 @@ public class ArrayList<T> implements List<T> {
 
     private Object[] array;
     private int nextValid;
+
+    private class ForwardIterator implements Iterator<T> {
+
+        private int currentIndex = 0;
+
+        @Override
+        public T next() {
+            return (T)array[currentIndex++];
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < nextValid;
+        }
+    }
+
+    private class ReverseIterator implements Iterator <T>{
+
+        @Override
+        public T next() {
+            return null;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+    }
+
+    @Override
+    public Iterator<T> getIterator() {
+        return new ForwardIterator();
+    }
+
+    @Override
+    public Iterator<T> getReverseIterator() {
+        return new ReverseIterator();
+    }
 
     public ArrayList() {
         array = new Object[INITIAL_SIZE];
@@ -59,12 +98,6 @@ public class ArrayList<T> implements List<T> {
         }
 
         return (T) array[index];
-    }
-
-    public void print() {
-        for (int i = 0; i < nextValid; i++) {
-            System.out.println(array[i]);
-        }
     }
 
     private void increaseArrayCapacity() {
