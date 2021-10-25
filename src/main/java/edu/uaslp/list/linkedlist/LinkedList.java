@@ -1,5 +1,6 @@
 package edu.uaslp.list.linkedlist;
 
+import edu.uaslp.list.MyIndexOutOfBoundException;
 import edu.uaslp.list.Iterator;
 import edu.uaslp.list.List;
 
@@ -83,16 +84,20 @@ public class LinkedList <H> implements List<H> {
         return size;
     }
 
-    public H getAt(int index) {
+    public H getAt(int index) throws MyIndexOutOfBoundException {
         int counter = 0;
         Node<H> it = head;
+
+        if(index < 0 || index >= size){
+            throw new MyIndexOutOfBoundException();
+        }
 
         while (counter < index && it != null) {
             counter++;
             it = it.next;
         }
 
-        return it == null ? null : it.data;
+        return it.data;
     }
 
     public void delete(int index) {
